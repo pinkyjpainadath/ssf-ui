@@ -1,0 +1,10 @@
+{
+  "name": "Login",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Login.js",
+  "dependencies": {
+    "material-ui": "next",
+    "@material-ui/icons": "next"
+  }
+}

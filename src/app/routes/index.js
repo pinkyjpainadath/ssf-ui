@@ -22,11 +22,14 @@ import ExtraPages from "./extraPages";
 import asyncComponent from "../../util/asyncComponent";
 import SocialApps from "./socialApps";
 import Home from "./home";
+import WatchVideo from "./watch";
 import { withRouter } from "react-router";
 
 const Routes = ({ match }) => (
   <Switch>
     <Route path={`${match.url}/home`} component={Home} />
+    <Route path={`${match.url}/watch`} component={WatchVideo} />
+
     <Route path={`${match.url}/dashboard`} component={Dashboard} />
     <Route path={`${match.url}/social-apps`} component={SocialApps} />
     <Route path={`${match.url}/components`} component={Components} />

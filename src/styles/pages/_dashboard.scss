@@ -21,7 +21,7 @@
   }
 
   .box-bottom {
-    border-top: 1px solid rgba($black, .15);
+    border-top: 1px solid rgba($black, 0.15);
   }
 
   .box-info {
@@ -38,7 +38,7 @@
       text-transform: uppercase;
       line-height: 14px;
       background-color: $white;
-      border: 1px solid rgba($black, .15);
+      border: 1px solid rgba($black, 0.15);
       font-size: 12px;
       color: $text-muted;
       border-radius: 1em;
@@ -207,8 +207,85 @@
   }
 }
 
+.video-header {
+  height: 100%;
+  padding-top: 50%;
+}
+.img-fluid {
+  width: 100% !important;
+  height: 70% !important;
+  border: 0px;
+  z-index: 1000;
+}
+
+.full-screen {
+  width: 30px !important;
+  height: 30px;
+  margin-top: 48% !important;
+  float: right;
+  color: $white !important;
+}
+
+.video-fluid {
+  width: 100%;
+  height: 70%;
+  border: 0px;
+  position: absolute;
+  width: 100%;
+  height: 70%;
+  -webkit-animation: fadeEffect 5s;
+  animation: fadeEffect 5s; /* Fading effect takes 1 second */
+
+  // @media screen and (max-width: 860px) {
+  //   height: 75% !important;
+  // }
+
+  // @media screen and (min-width: 1100px) {
+  //   height: 40% !important;
+  // }
+  // @media screen and (min-width: 1900px) {
+  //   height: 80% !important;
+  // }
+
+  // @media screen and (min-width: 1900px) {
+  //   height: 80% !important;
+  // }
+}
+
+.fullscreen-video-fluid {
+  width: 100% !important;
+  height: 100% !important;
+  border: 0px;
+  position: absolute;
+  width: 100%;
+  height: 70%;
+  -webkit-animation: fadeEffect 5s;
+  animation: fadeEffect 5s; /* Fading effect takes 1 second */
+}
+
+@-webkit-keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .img-fluid {
   width: 100%;
+  height: 70%;
+  border: 0px;
+  -webkit-animation: fadeEffect 2s;
+  animation: fadeEffect 2s;
 }
 
 .comment-footer {
@@ -237,7 +314,10 @@
     @include display-flex(flex, column, nowrap);
     @include justify-content(center);
     @include align-items(center);
-    @include box-shadow(0 6px 20px 0 rgba($gray-900, 0.19), 0 8px 17px 0 rgba($gray-900, 0.20));
+    @include box-shadow(
+      0 6px 20px 0 rgba($gray-900, 0.19),
+      0 8px 17px 0 rgba($gray-900, 0.2)
+    );
     @include transition(all 100ms ease);
     position: absolute;
     left: 15px;
@@ -311,7 +391,7 @@
   }
 
   & .user-img-container {
-    content: '';
+    content: "";
     @include display-flex(flex, row, nowrap);
     @include justify-content(flex-end);
     @include align-items(center);

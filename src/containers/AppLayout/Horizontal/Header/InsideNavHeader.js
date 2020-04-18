@@ -7,6 +7,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import SearchBox from "components/SearchBox";
+import Login from "components/Login";
 import MailNotification from "../../../../components/MailNotification";
 import AppNotification from "../../../../components/AppNotification";
 import CardHeader from "components/dashboard/Common/CardHeader/index";
@@ -15,8 +16,15 @@ import LanguageSwitcher from "components/LanguageSwitcher/index";
 import Menu from "./TopNav/Menu";
 import UserInfoPopup from "components/UserInfo/UserInfoPopup";
 import { switchLanguage, toggleCollapsedNav } from "actions/Setting";
+import LanguageSelect from "components/LanguageSelect";
+import GenreSelect from "components/GenreSelect";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import HomeIcon from "@material-ui/icons/Home";
 
-const InsideNavHeader = props => {
+import SignIn from "../../../../containers/SignIn";
+
+const InsideNavHeader = (props) => {
   const { locale } = useSelector(({ settings }) => settings);
   const dispatch = useDispatch();
   const [searchBox, setSearchBox] = useState(undefined);
@@ -33,7 +41,7 @@ const InsideNavHeader = props => {
   const onMailNotificationSelect = () => {
     setMailNotification(!mailNotification);
   };
-  const onLangSwitcherSelect = event => {
+  const onLangSwitcherSelect = (event) => {
     setLangSwitcher(!langSwitcher);
   };
   const onSearchBoxSelect = () => {
@@ -54,7 +62,7 @@ const InsideNavHeader = props => {
     setSearchBox(false);
     setApps(false);
   };
-  const onToggleCollapsedNav = e => {
+  const onToggleCollapsedNav = (e) => {
     const val = !props.navCollapsed;
     dispatch(toggleCollapsedNav(val));
   };
@@ -117,11 +125,11 @@ const InsideNavHeader = props => {
     );
   };
 
-  const updateSearchText = evt => {
+  const updateSearchText = (evt) => {
     setSearchText(evt.target.value);
   };
 
-  const onSwitchLanguage = lang => {
+  const onSwitchLanguage = (lang) => {
     dispatch(switchLanguage(lang));
   };
 
@@ -142,46 +150,40 @@ const InsideNavHeader = props => {
             src={require("assets/images/ssf-logo.png")}
             alt="Jambo"
             title="Jambo"
+            styleName="d-none d-lg-block"
           />
         </Link>
+        <Grid
+          container
+          spacing={2}
+          direction="row"
+          justify="flex-start"
+          alignItems="center"
+        >
+          <Grid item xs>
+            <LanguageSelect />
+          </Grid>
+          {/* <Grid item xs>
+            <GenreSelect />
+          </Grid>
+          <Grid item xs>
+            <SearchBox
+              placeholder="Search"
+              onChange={updateSearchText}
+              value={searchText}
+            />
+          </Grid>
+          <Grid item xs>
+            <Button variant="contained" color="primary" size="small">
+              Go
+            </Button>
+          </Grid> */}
+          <Grid item xs={1} md={4} lg={6} xl={7}></Grid>
+        </Grid>
 
-        <SearchBox
-          styleName="d-none d-lg-block"
-          placeholder=""
-          onChange={updateSearchText}
-          value={searchText}
-        />
-        <Menu />
-
-        <ul className="header-notifications list-inline ml-auto">
-          <li className="list-inline-item user-nav">
-            <Dropdown
-              className="quick-menu"
-              isOpen={userInfo}
-              toggle={onUserInfoSelect}
-            >
-              <DropdownToggle
-                className="d-inline-block"
-                tag="span"
-                data-toggle="dropdown"
-              >
-                <IconButton className="icon-btn size-30">
-                  <Avatar
-                    alt="..."
-                    src={"https://via.placeholder.com/150x150"}
-                    className="size-30"
-                  />
-                </IconButton>
-              </DropdownToggle>
-
-              <DropdownMenu right>
-                <UserInfoPopup />
-              </DropdownMenu>
-            </Dropdown>
-          </li>
-        </ul>
-
-        <div className="ellipse-shape" />
+        <div className="ellipse-shape">
+          <SignIn />
+        </div>
       </Toolbar>
     </AppBar>
   );

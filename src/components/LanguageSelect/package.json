@@ -1,0 +1,9 @@
+{
+  "name": "LanguageSelect",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./LanguageSelect.js",
+  "dependencies": {
+    "material-ui": "next"
+  }
+}

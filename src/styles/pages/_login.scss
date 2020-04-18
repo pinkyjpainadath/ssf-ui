@@ -30,14 +30,15 @@
   }
 }
 
-.login-content .btn, .login-content .jr-btn {
+.login-content .btn,
+.login-content .jr-btn {
   padding: 10px 35px !important;
 }
 
 .app-login-container {
   position: relative;
   max-width: 680px;
-  width: 94%;
+  width: 100%;
   margin: 0 auto;
 
   & .loader-view {
@@ -84,12 +85,13 @@
   }
 }
 
-.app-login-content .btn, .login-content .jr-btn {
+.app-login-content .btn,
+.login-content .jr-btn {
   padding: 10px 35px !important;
 }
 
 .app-logo-content {
-  background-color: $app-primary;
+  background-color: $logo-dark !important;
   padding: 35px 35px 20px;
   width: 40%;
   order: 2;

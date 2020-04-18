@@ -1,4 +1,8 @@
 /*Header Styles*/
+$primary-dark-theme: #000000;
+$secondary-dark-theme: lighten($primary-dark-theme, 25%);
+$third-dark-theme: lighten($primary-dark-theme, 60%);
+
 .jr-menu-icon {
   outline: none !important;
   @include justify-content(flex-start !important);
@@ -12,33 +16,26 @@
   //z-index: 1302 !important;
   background-color: $app-primary !important;
   color: $white !important;
-
+  .home-button {
+    padding-right: 16px;
+    color: $white !important;
+  }
+  .home-icon {
+    font-size: 25px;
+  }
   .ellipse-shape {
     position: absolute;
     right: 0;
-    top: 0;
-    z-index: -1;
+    margin-right: 10px;
+    z-index: 10000;
     overflow: hidden;
     height: 100%;
-    width: 560px;
-
-    &:after {
-      content: "";
-      display: block;
-      width: 870px;
-      position: absolute;
-      top: -20px;
-      right: -300px;
-      height: 280px;
-      z-index: 1;
-      background-color: rgba($white, 0.06);
-      @include border-radius(50% 0 0 50%);
-    }
+    margin-top: 5px;
   }
 
   & .search-bar input {
     @include transition($transition-base);
-    background-color: rgba($white, 0.2);
+    background-color: $secondary-dark-theme;
     color: $white;
     & + .search-icon {
       top: 0;
@@ -61,6 +58,7 @@
 
 .app-logo img {
   height: 38px;
+  margin-right: 30px;
 
   @media screen and (max-width: 575px) {
     height: 28px;
@@ -89,13 +87,14 @@
   max-height: $app-bar-height !important;
 
   & .search-bar {
-    margin-left: 50px;
-    margin-right: auto;
+    // margin-left: 5px;
+    //  margin-right: auto;
     max-width: 300px;
-    width: 280px;
+    min-width: 150px;
+    //  width: 280px;
 
     @media screen and (max-width: 767px) {
-      margin-left: 40px;
+      // margin-left: 40px;
       width: 200px;
     }
   }
@@ -103,22 +102,22 @@
 
 .app-header-horizontal .app-toolbar {
   & .search-bar {
-    margin-left: 20px;
+    // margin-left: 5px;
     max-width: 320px;
-    width: 300px;
+    // width: 300px;
 
     @media screen and (max-width: 1199px) {
-      width: 240px;
-      margin-right: 10px;
+      //width: 240px;
+      // margin-right: 10px;
     }
 
     @media screen and (max-width: 1099px) {
-      width: 200px;
+      // width: 200px;
     }
 
     @media screen and (max-width: 767px) {
-      margin-left: 40px;
-      width: 180px;
+      // margin-left: 40px;
+      // width: 180px;
     }
   }
 }

@@ -1,0 +1,9 @@
+{
+  "name": "GenreSelect",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./GenreSelect.js",
+  "dependencies": {
+    "material-ui": "next"
+  }
+}

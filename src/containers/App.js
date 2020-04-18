@@ -1,11 +1,11 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import URLSearchParams from "url-search-params";
 import MomentUtils from "@date-io/moment";
-import { MuiPickersUtilsProvider} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { Redirect, Route, Switch } from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IntlProvider } from "react-intl";
 import "assets/vendors/style";
 import indigoTheme from "./themes/indigoTheme";
@@ -34,7 +34,7 @@ import {
   DEEP_PURPLE,
   GREEN,
   INDIGO,
-  PINK
+  PINK,
 } from "constants/ThemeColors";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
@@ -44,41 +44,52 @@ import asyncComponent from "util/asyncComponent";
 import { setDarkTheme, setThemeColor } from "../actions/Setting";
 import AppLayout from "./AppLayout";
 
-const RestrictedRoute = ({component: Component, authUser, ...rest}) =>
-  <Route
-    {...rest}
-    render={props =>
-      authUser
-        ? <Component {...props} />
-        : <Redirect
-          to={{
-            pathname: '/signin',
-            state: {from: props.location}
-          }}
-        />}
-  />;
+const RestrictedRoute = ({ component: Component, authUser, ...rest }) => (
+  // <Route
+  //   {...rest}
+  //   render={props =>
+  //     authUser ? (
+  //       <Component {...props} />
+  //     ) : (
+  //       <Redirect
+  //         to={{
+  //           pathname: "/app/watch",
+  //           state: { from: props.location }
+  //         }}
+  //       />
+  //     )
+  //   }
+  // />
+  <Route {...rest} render={(props) => <Component {...props} />} />
+);
 
 const App = (props) => {
   const dispatch = useDispatch();
-  const {themeColor, darkTheme, locale, isDirectionRTL} = useSelector(({settings}) => settings);
-  const {authUser, initURL} = useSelector(({auth}) => auth);
+  const { themeColor, darkTheme, locale, isDirectionRTL } = useSelector(
+    ({ settings }) => settings
+  );
+  const { authUser, initURL } = useSelector(({ auth }) => auth);
   const isDarkTheme = darkTheme;
-  const {match, location} = props;
+  const { match, location } = props;
 
   useEffect(() => {
     window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
-    if (initURL === '') {
+    if (initURL === "") {
       dispatch(setInitUrl(props.history.location.pathname));
     }
     const params = new URLSearchParams(props.location.search);
     if (params.has("theme-name")) {
-      dispatch(setThemeColor(params.get('theme-name')));
+      dispatch(setThemeColor(params.get("theme-name")));
     }
     if (params.has("dark-theme")) {
       dispatch(setDarkTheme());
     }
-  }, [dispatch, initURL, props.history.location.pathname, props.location.search]);
-
+  }, [
+    dispatch,
+    initURL,
+    props.history.location.pathname,
+    props.location.search,
+  ]);
 
   const getColorTheme = (themeColor, applyTheme) => {
     switch (themeColor) {
@@ -115,7 +126,7 @@ const App = (props) => {
         break;
       }
       case DARK_INDIGO: {
-        applyTheme = createMuiTheme({...indigoTheme, direction: 'rtl'});
+        applyTheme = createMuiTheme({ ...indigoTheme, direction: "rtl" });
         break;
       }
       case DARK_CYAN: {
@@ -146,33 +157,34 @@ const App = (props) => {
         applyTheme = createMuiTheme(greenTheme);
         break;
       }
-      default : createMuiTheme(indigoTheme);
+      default:
+        applyTheme = createMuiTheme(blueTheme);
     }
     return applyTheme;
   };
 
-  let applyTheme = createMuiTheme(indigoTheme);
+  let applyTheme = createMuiTheme(blueTheme);
   if (isDarkTheme) {
-    document.body.classList.add('dark-theme');
-    applyTheme = createMuiTheme(darkTheme)
+    document.body.classList.add("dark-theme");
+    applyTheme = createMuiTheme(darkTheme, applyTheme);
   } else {
     applyTheme = getColorTheme(themeColor, applyTheme);
   }
-  if (location.pathname === '/') {
-    if (authUser === null) {
-      return ( <Redirect to={'/signin'}/> );
-    } else if (initURL === '' || initURL === '/' || initURL === '/signin') {
-      return ( <Redirect to={'/app/dashboard/crypto'}/> );
-    } else {
-      return ( <Redirect to={initURL}/> );
-    }
+  if (location.pathname === "/") {
+    // if (authUser === null) {
+    //   return <Redirect to={"/signin"} />;
+    // } else if (initURL === "" || initURL === "/" || initURL === "/signin") {
+    //   return <Redirect to={"/app/dashboard/crypto"} />;
+    // } else {
+    return <Redirect to={"/app/home"} />;
+    //   }
   }
   if (isDirectionRTL) {
-    applyTheme.direction = 'rtl';
-    document.body.classList.add('rtl')
+    applyTheme.direction = "rtl";
+    document.body.classList.add("rtl");
   } else {
-    document.body.classList.remove('rtl');
-    applyTheme.direction = 'ltr';
+    document.body.classList.remove("rtl");
+    applyTheme.direction = "ltr";
   }
 
   const currentAppLocale = AppLocale[locale.locale];
@@ -181,16 +193,23 @@ const App = (props) => {
       <MuiPickersUtilsProvider utils={MomentUtils}>
         <IntlProvider
           locale={currentAppLocale.locale}
-          messages={currentAppLocale.messages}>
+          messages={currentAppLocale.messages}
+        >
           <RTL>
             <div className="app-main">
               <Switch>
-                <RestrictedRoute path={`${match.url}app`} authUser={authUser}
-                                 component={AppLayout}/>
-                <Route path='/signin' component={SignIn}/>
-                <Route path='/signup' component={SignUp}/>
+                <RestrictedRoute
+                  path={`${match.url}app`}
+                  authUser={authUser}
+                  component={AppLayout}
+                />
+                <Route path="/signin" component={SignIn} />
+                <Route path="/signup" component={SignUp} />
                 <Route
-                  component={asyncComponent(() => import('app/routes/extraPages/routes/404'))}/>
+                  component={asyncComponent(() =>
+                    import("app/routes/extraPages/routes/404")
+                  )}
+                />
               </Switch>
             </div>
           </RTL>

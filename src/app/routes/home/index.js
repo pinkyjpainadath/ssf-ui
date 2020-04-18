@@ -11,7 +11,7 @@ const Home = ({ match }) => (
   <div className="app-wrapper">
     <div className="animated slideInUpTiny animation-duration-3">
       <div className="row mb-md-3">
-        <CardBox styleName="col-lg-12">
+        <CardBox styleName="col-lg-12 " cardStyle="premiumStyle">
           <Simple />
         </CardBox>
       </div>
@@ -19,19 +19,6 @@ const Home = ({ match }) => (
       <div className="padded-row row mb-md-3">
         <CardBox styleName="col-lg-12" cardStyle="text-center">
           <ProductCarousel products={products} />
-        </CardBox>
-      </div>
-
-      <div className="row mb-md-3">
-        <CardBox
-          styleName="col-lg-12"
-          cardStyle="text-center"
-          heading={<IntlMessages id="component.carousel.testimonial" />}
-        >
-          <div>
-            <IntlMessages id="component.carousel.testimonialTxt" />
-          </div>
-          <TestimonialCarousel testimonials={testimonials} />
         </CardBox>
       </div>
     </div>

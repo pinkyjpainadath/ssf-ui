@@ -1,7 +1,11 @@
 /*Theme Dark theme Styles*/
-$primary-dark-theme: #38424B !default;
-$secondary-dark-theme: lighten($primary-dark-theme, 15%);
-$dark-theme-text: #E0E0E0 !default;
+$primary-dark-theme: #000000;
+$secondary-dark-theme: lighten($primary-dark-theme, 25%);
+$third-dark-theme: lighten($primary-dark-theme, 60%);
+$header-dark-theme: lighten($primary-dark-theme, 15%);
+$app-primary-blue: #2196f3 !default;
+
+$dark-theme-text: #e0e0e0 !default;
 
 $sidebar-dark-theme: $primary-dark-theme !default;
 $sidebar-text-dark-theme: $dark-theme-text !default;
@@ -18,7 +22,18 @@ body.dark-theme {
 
 //Default card style
 .dark-theme {
-  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
     color: $dark-theme-text;
   }
 
@@ -32,7 +47,27 @@ body.dark-theme {
     color: darken($dark-theme-text, 10%);
   }
 }
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: lighten($primary-dark-theme, 20%);
+  border-radius: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: darken($primary-dark-theme, 10%);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: darken($primary-dark-theme, 10%);
+}
 .dark-theme {
   & .sub-heading,
   & .meta-date,
@@ -84,7 +119,9 @@ body.dark-theme {
     }
   }
 
-  & .bg-primary,
+  & .bg-primary {
+    background-color: $secondary-dark-theme !important;
+  }
   & .badge-primary {
     background-color: darken($primary-dark-theme, 5%) !important;
     color: $dark-theme-text !important;
@@ -150,7 +187,7 @@ body.dark-theme {
 
 //_header.scss
 .dark-theme .app-main-header {
-  background-color: $primary-dark-theme !important;
+  background-color: $header-dark-theme !important;
 
   & .search-dropdown input {
     @media screen and (max-width: 575px) {
@@ -320,7 +357,7 @@ body.dark-theme {
   ul.sub-menu {
     background-color: darken($secondary-dark-theme, 5%);
     border-color: darken($secondary-dark-theme, 5%);
-    @include box-shadow(0 1px 4px 0 rgba(0, 0, 0, 0.30));
+    @include box-shadow(0 1px 4px 0 rgba(0, 0, 0, 0.3));
 
     & li a.active,
     & li.active > a,
@@ -414,7 +451,7 @@ body.dark-theme {
 .dark-theme .rbc-toolbar button.rbc-active {
   background-color: rgba($primary-dark-theme, 0.9);
   border-color: lighten($primary-dark-theme, 40%);
-  color: lighten($white, 40%)
+  color: lighten($white, 40%);
 }
 
 .dark-theme .rbc-toolbar button:active:hover,
@@ -423,20 +460,20 @@ body.dark-theme {
 .dark-theme .rbc-toolbar button.rbc-active:focus {
   background-color: rgba($primary-dark-theme, 0.9);
   border-color: lighten($primary-dark-theme, 40%);
-  color: lighten(white, 20%)
+  color: lighten(white, 20%);
 }
 
 .dark-theme .rbc-toolbar button:hover,
 .dark-theme .rbc-toolbar button:focus {
   background-color: rgba($primary-dark-theme, 0.9);
   border-color: lighten($primary-dark-theme, 40%);
-  color: lighten($white, 40%)
+  color: lighten($white, 40%);
 }
 
 .dark-theme .rbc-toolbar button {
   background-color: rgba($primary-dark-theme, 0.9);
   border-color: lighten($primary-dark-theme, 40%);
-  color: lighten($primary-dark-theme, 40%)
+  color: lighten($primary-dark-theme, 40%);
 }
 
 .dark-theme .rbc-show-more {
@@ -615,12 +652,16 @@ body.dark-theme {
 }
 
 .dark-theme .module-box-header {
+  & .search-bar {
+    min-width: 150px !important;
+    max-width: 200px !important;
+  }
   & .icon-btn {
     color: $dark-theme-text;
   }
 
   & .search-bar input {
-    background-color: $primary-dark-theme;
+    background-color: $secondary-dark-theme;
 
     &:focus {
       background-color: $white;
@@ -629,7 +670,7 @@ body.dark-theme {
 }
 
 .dark-theme .chat-sidenav-header .search-bar input {
-  background-color: $primary-dark-theme;
+  background-color: $secondary-dark-theme;
 
   &:focus {
     background-color: $white;
@@ -732,19 +773,30 @@ body.dark-theme {
 // login page content
 
 .dark-theme .app-login-main-content {
-  background-color: $black;
+  background-color: $header-dark-theme;
 }
 
+.app-login-logo img {
+  height: 200px;
+
+  @media screen and (max-width: 575px) {
+    height: 48px;
+  }
+}
 
 /*Button Group Styles*/
 .dark-theme .btn-group,
 .dark-theme .btn-group-vertical {
-  > .jr-btn {
-    &.active {
-      background-color: $primary-dark-theme;
-      border-color: $primary-dark-theme;
-    }
+  margin-bottom: 10px;
+  height: 40px;
 
+  > .jr-btn {
+    border-radius: 5px;
+    width: 130px;
+    margin: 0px !important;
+    &.active {
+      border-color: $white;
+    }
   }
 
   > .jr-flat-btn {
@@ -826,11 +878,20 @@ body.dark-theme {
 
 // Gradient Color Class
 .dark-theme .bg-gradient-primary {
-  @include gradient-directional($primary-dark-theme, lighten($primary-dark-theme, 16%), 0deg);
+  @include gradient-directional(
+    $primary-dark-theme,
+    lighten($primary-dark-theme, 16%),
+    0deg
+  );
 }
 
 .dark-theme .bg-gradient-primary-x {
-  @include gradient-x(darken($primary-dark-theme, 10%), lighten($primary-dark-theme, 16%), 70%, 100%);
+  @include gradient-x(
+    darken($primary-dark-theme, 10%),
+    lighten($primary-dark-theme, 16%),
+    70%,
+    100%
+  );
 }
 
 .dark-theme .bg-dark {
@@ -884,20 +945,95 @@ body.dark-theme {
     }
   }
 
-  & .table-hover tbody tr {
+  .app-social-block {
+    color: $dark-theme-text;
+  }
 
+  & .table-hover tbody tr {
     @include hover() {
       color: $white;
     }
   }
 
+  & .MuiBackdrop-root {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    z-index: -1;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000a3;
+  }
+
+  & .MuiButton-label {
+    color: $white;
+  }
+
+  & .MuiToggleButtonGroup-root {
+    margin-bottom: 10px;
+    background-color: transparent;
+  }
+
+  & .MuiToggleButton-root {
+    text-transform: inherit;
+    height: 35px !important;
+  }
+
+  & .MuiToggleButton-root.Mui-selected {
+    background-color: $app-primary-blue !important;
+  }
+
+  & .MuiDialog-paper {
+    margin: 32px;
+    position: relative;
+    overflow-y: auto;
+    background-color: $header-dark-theme;
+  }
   & .MuiTableCell-root {
     border-bottom-color: lighten($primary-dark-theme, 25%);
   }
 
   & .MuiSvgIcon-colorPrimary,
   & .MuiCheckbox-colorPrimary.Mui-checked {
-    color: $white;
+    color: $dark-theme-text;
+  }
+
+  & .MuiFormLabel-root {
+    color: $dark-theme-text;
+  }
+  & .MuiInputBase-root {
+    color: $dark-theme-text;
+  }
+
+  & .MuiFormLabel-root.Mui-focused {
+    color: $dark-theme-text;
+  }
+
+  & .MuiInput-underline:after {
+    border-bottom: $dark-theme-text;
+  }
+  &.MuiSelect-input:focus,
+  & .MuiListItem-root.Mui-selected,
+  & .MuiListItem-root.Mui-selected:hover.Mui-selected:focus {
+    background-color: $third-dark-theme !important;
+    padding-right: 24px;
+    font-size: 14px;
+    padding: 10px;
+    border: none;
+  }
+
+  & .MuiSelect-select,
+  &.MuiSelect-select.MuiSelect-select,
+  &.MuiSelect-select.MuiSelect-select {
+    padding-right: 24px;
+    color: $dark-theme-text;
+    font-size: 14px;
+    border-radius: 5px !important;
+    padding: 10px;
+    background-color: $secondary-dark-theme !important;
   }
 }
 

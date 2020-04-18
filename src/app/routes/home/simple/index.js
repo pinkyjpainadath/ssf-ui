@@ -4,7 +4,7 @@ import {
   CarouselCaption,
   CarouselControl,
   CarouselIndicators,
-  CarouselItem
+  CarouselItem,
 } from "reactstrap";
 
 const items = [
@@ -13,22 +13,22 @@ const items = [
     altText: "Slide 1",
     caption: "Slide 1",
     src:
-      "https://boygeniusreport.files.wordpress.com/2019/03/avengers-endgame-sign-2.jpg?quality=98&strip=all&w=1200"
+      "https://www.fluentu.com/blog/chinese/wp-content/uploads/2013/06/2.jpg",
   },
   {
     id: 1,
     altText: "Slide 1",
     caption: "Slide 1",
     src:
-      "https://boygeniusreport.files.wordpress.com/2019/03/avengers-endgame-sign-2.jpg?quality=98&strip=all&w=1200"
+      "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/66396629323171.55edda9490afb.jpg",
   },
   {
     id: 1,
     altText: "Slide 1",
     caption: "Slide 1",
     src:
-      "https://boygeniusreport.files.wordpress.com/2019/03/avengers-endgame-sign-2.jpg?quality=98&strip=all&w=1200"
-  }
+      "https://in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/ishq-malayalam-et00102823-14-05-2019-07-27-45.jpg",
+  },
 ];
 
 class Simple extends Component {
@@ -76,20 +76,16 @@ class Simple extends Component {
   render() {
     const { activeIndex } = this.state;
 
-    const slides = items.map(item => {
+    const slides = items.map((item) => {
       return (
         <CarouselItem
           key={item.id}
           onExiting={this.onExiting}
           onExited={this.onExited}
         >
-          <img src={item.src} alt={item.altText} />
+          <img src={item.src} />
 
-          <CarouselCaption
-            className="text-danger"
-            captionText={item.altText}
-            captionHeader={item.caption}
-          />
+          <CarouselCaption className="text-danger" />
         </CarouselItem>
       );
     });
@@ -98,9 +94,8 @@ class Simple extends Component {
       <div>
         <style>
           {`.carousel-item 
-                img {
-                
-                    display: block;
+                img {    
+            display: block;
             margin-left: auto;
             margin-right: auto;
             width: 1200px;
